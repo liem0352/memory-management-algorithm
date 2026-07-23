@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="t d">
+  <title id="t">memory-management-algorithm · 可变式分区存储管理系统</title>
+  <desc id="d">C 语言实现可变式分区存储管理,含首次适应、最佳适应、最坏适应三种算法。左侧标题与技术栈,右侧展示 1024KB 内存分区与三种算法分配策略对比。</desc>
+  <rect width="1200" height="340" rx="22" fill="#11161c"/>
+  <rect x="0" y="0" width="6" height="340" rx="3" fill="#60a5fa"/>
+
+  <g transform="translate(56,54)" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif">
+    <text x="0" y="0" font-size="15" letter-spacing="4" fill="#60a5fa" font-weight="600">OS · MEMORY PARTITION</text>
+    <text x="0" y="52" font-size="40" font-weight="700" fill="#e8edf0">可变式分区存储管理系统</text>
+    <text x="0" y="96" font-size="17" fill="#7d8893">C 语言 · 三种经典内存分配算法</text>
+    <text x="0" y="122" font-size="17" fill="#7d8893">首次适应 · 最佳适应 · 最坏适应</text>
+
+    <g transform="translate(0,160)" font-size="13.5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+      <g><rect width="64" height="30" rx="8" fill="none" stroke="#243040"/><text x="32" y="20" text-anchor="middle" fill="#9aa6b2">C99</text></g>
+      <g transform="translate(76,0)"><rect width="76" height="30" rx="8" fill="none" stroke="#243040"/><text x="38" y="20" text-anchor="middle" fill="#9aa6b2">GCC</text></g>
+      <g transform="translate(164,0)"><rect width="76" height="30" rx="8" fill="none" stroke="#243040"/><text x="38" y="20" text-anchor="middle" fill="#9aa6b2">WinAPI</text></g>
+      <g transform="translate(252,0)"><rect width="84" height="30" rx="8" fill="none" stroke="#1e3a5f"/><text x="42" y="20" text-anchor="middle" fill="#60a5fa">UTF-8</text></g>
+      <g transform="translate(348,0)"><rect width="100" height="30" rx="8" fill="none" stroke="#5c3a1e"/><text x="50" y="20" text-anchor="middle" fill="#f97316">分区合并</text></g>
+    </g>
+    <text x="0" y="236" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" fill="#4d5862">1024KB · 动态分配 · 相邻空闲区自动合并 · 实时状态表</text>
+  </g>
+
+  <g transform="translate(712,52)" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif">
+    <text x="0" y="0" font-size="12" letter-spacing="3" fill="#4d5862">MEMORY 1024KB · ALLOCATION STRATEGIES</text>
+
+    <g transform="translate(0,16)">
+      <rect width="420" height="22" rx="4" fill="#1a2230"/>
+      <rect x="0" y="0" width="80" height="22" rx="4" fill="#60a5fa" opacity="0.55"/>
+      <rect x="80" y="0" width="120" height="22" rx="0" fill="#f97316" opacity="0.55"/>
+      <rect x="200" y="0" width="60" height="22" rx="0" fill="#60a5fa" opacity="0.55"/>
+      <rect x="260" y="0" width="160" height="22" rx="4" fill="#60a5fa" opacity="0.18"/>
+      <text x="40" y="15" text-anchor="middle" font-size="9" fill="#e8edf0" font-family="ui-monospace,monospace">J1 200</text>
+      <text x="140" y="15" text-anchor="middle" font-size="9" fill="#11161c" font-family="ui-monospace,monospace" font-weight="600">J2 300</text>
+      <text x="230" y="15" text-anchor="middle" font-size="9" fill="#e8edf0" font-family="ui-monospace,monospace">J3 150</text>
+      <text x="340" y="15" text-anchor="middle" font-size="9" fill="#7d8893" font-family="ui-monospace,monospace">空闲 374</text>
+      <text x="0" y="-4" font-size="9" fill="#7d8893" font-family="ui-monospace,monospace">0</text>
+      <text x="420" y="-4" font-size="9" fill="#7d8893" font-family="ui-monospace,monospace" text-anchor="end">1024KB</text>
+    </g>
+
+    <g transform="translate(0,54)">
+      <rect width="420" height="50" rx="8" fill="#161e2a" stroke="#243040"/>
+      <text x="14" y="22" font-size="12.5" fill="#60a5fa" font-weight="600">First Fit · 首次适应</text>
+      <text x="14" y="38" font-size="10.5" fill="#7d8893" font-family="ui-monospace,monospace">从首个空闲区开始查找,找到即分配</text>
+      <g transform="translate(280,12)">
+        <rect width="126" height="26" rx="5" fill="#1a2640" stroke="#1e3a5f"/>
+        <text x="14" y="17" font-size="10" fill="#60a5fa" font-family="ui-monospace,monospace">速度快</text>
+        <text x="112" y="17" font-size="10" fill="#7d8893" font-family="ui-monospace,monospace" text-anchor="end">碎片中</text>
+      </g>
+    </g>
+
+    <g transform="translate(0,114)">
+      <rect width="420" height="50" rx="8" fill="#161e2a" stroke="#243040"/>
+      <text x="14" y="22" font-size="12.5" fill="#f97316" font-weight="600">Best Fit · 最佳适应</text>
+      <text x="14" y="38" font-size="10.5" fill="#7d8893" font-family="ui-monospace,monospace">查找满足要求的最小空闲区,减少浪费</text>
+      <g transform="translate(280,12)">
+        <rect width="126" height="26" rx="5" fill="#2a1c10" stroke="#5c3a1e"/>
+        <text x="14" y="17" font-size="10" fill="#f97316" font-family="ui-monospace,monospace">利用率高</text>
+        <text x="112" y="17" font-size="10" fill="#7d8893" font-family="ui-monospace,monospace" text-anchor="end">小碎片多</text>
+      </g>
+    </g>
+
+    <g transform="translate(0,174)">
+      <rect width="420" height="50" rx="8" fill="#161e2a" stroke="#243040"/>
+      <text x="14" y="22" font-size="12.5" fill="#a3e635" font-weight="600">Worst Fit · 最坏适应</text>
+      <text x="14" y="38" font-size="10.5" fill="#7d8893" font-family="ui-monospace,monospace">查找最大空闲区分配,保留较大剩余</text>
+      <g transform="translate(280,12)">
+        <rect width="126" height="26" rx="5" fill="#1a2410" stroke="#3a4a1e"/>
+        <text x="14" y="17" font-size="10" fill="#a3e635" font-family="ui-monospace,monospace">大块保留</text>
+        <text x="112" y="17" font-size="10" fill="#7d8893" font-family="ui-monospace,monospace" text-anchor="end">利用率低</text>
+      </g>
+    </g>
+
+    <g transform="translate(0,236)">
+      <rect width="420" height="28" rx="6" fill="#0f1419" stroke="#243040"/>
+      <text x="14" y="18" font-size="10.5" fill="#9aa6b2" font-family="ui-monospace,monospace">回收 J2 → 相邻空闲区自动合并为 574KB</text>
+    </g>
+  </g>
+
+  <text x="56" y="312" font-size="12" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" fill="#4d5862">author: liem · 实训4 · v2.0 UTF-8 中文版 · test_utf8.bat</text>
+</svg>
