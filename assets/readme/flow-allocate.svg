@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="faTitle faDesc">
+  <title id="faTitle">分配流程图</title>
+  <desc id="faDesc">内存分配流程:请求 N KB → 扫描空闲链表 → 选块判定(三算法可替换分支:首次适应选首个够大块、最佳适应选最小够大块、最坏适应选最大块)→ 切分剩余 → 插入有序链表 → 返回起始地址。</desc>
+
+  <!-- Background -->
+  <rect width="1200" height="360" rx="20" fill="#0E1116"/>
+
+  <!-- ============================================================= -->
+  <!-- Header                                                        -->
+  <!-- ============================================================= -->
+  <g id="header" transform="translate(64 44)" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif'>
+    <text x="0" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="3" fill="#6B7280">ALLOCATE FLOW</text>
+    <text x="0" y="32" font-size="26" font-weight="700" fill="#E8E4D9" letter-spacing="-0.3">分配流程 · 三算法分支</text>
+  </g>
+
+  <!-- ============================================================= -->
+  <!-- Main flow (horizontal, y=120)                                 -->
+  <!-- Node: w=140 h=50, gap=24. Start x=56                          -->
+  <!-- 1.请求 56-196 | 2.扫描 220-360 | 3.选块(菱形) 384-524 |        -->
+  <!-- 4.切分 548-688 | 5.插入 712-852 | 6.返回 876-1016             -->
+  <!-- ============================================================= -->
+  <g id="main-flow" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif'>
+
+    <!-- Node 1: 请求 N KB -->
+    <g transform="translate(56 120)">
+      <rect x="0" y="0" width="140" height="50" rx="6" fill="#1A1F26" stroke="#C9A961" stroke-width="1"/>
+      <text x="70" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#E8E4D9">请求 N KB</text>
+      <text x="70" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">allocate(n)</text>
+    </g>
+
+    <!-- Arrow 1 -> 2 -->
+    <g stroke="#6B7280" stroke-width="1" fill="none">
+      <line x1="196" y1="145" x2="218" y2="145"/>
+      <polyline points="214,141 218,145 214,149"/>
+    </g>
+
+    <!-- Node 2: 扫描空闲链表 -->
+    <g transform="translate(220 120)">
+      <rect x="0" y="0" width="140" height="50" rx="6" fill="#1A1F26" stroke="#6B7280" stroke-width="1"/>
+      <text x="70" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#E8E4D9">扫描空闲链表</text>
+      <text x="70" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">traverse list</text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <g stroke="#6B7280" stroke-width="1" fill="none">
+      <line x1="360" y1="145" x2="382" y2="145"/>
+      <polyline points="378,141 382,145 378,149"/>
+    </g>
+
+    <!-- Node 3: 选块判定 (diamond) -->
+    <g transform="translate(454 145)">
+      <polygon points="0,-32 70,0 0,32 -70,0" fill="#1A1F26" stroke="#C9A961" stroke-width="1.5"/>
+      <text x="0" y="-4" text-anchor="middle" font-size="13" font-weight="600" fill="#C9A961">选块判定</text>
+      <text x="0" y="14" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">pick block</text>
+    </g>
+
+    <!-- Arrow 3 -> 4 -->
+    <g stroke="#6B7280" stroke-width="1" fill="none">
+      <line x1="524" y1="145" x2="546" y2="145"/>
+      <polyline points="542,141 546,145 542,149"/>
+    </g>
+
+    <!-- Node 4: 切分剩余 -->
+    <g transform="translate(548 120)">
+      <rect x="0" y="0" width="140" height="50" rx="6" fill="#1A1F26" stroke="#6B7280" stroke-width="1"/>
+      <text x="70" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#E8E4D9">切分剩余</text>
+      <text x="70" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">split remainder</text>
+    </g>
+
+    <!-- Arrow 4 -> 5 -->
+    <g stroke="#6B7280" stroke-width="1" fill="none">
+      <line x1="688" y1="145" x2="710" y2="145"/>
+      <polyline points="706,141 710,145 706,149"/>
+    </g>
+
+    <!-- Node 5: 插入有序链表 -->
+    <g transform="translate(712 120)">
+      <rect x="0" y="0" width="140" height="50" rx="6" fill="#1A1F26" stroke="#6B7280" stroke-width="1"/>
+      <text x="70" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#E8E4D9">插入有序链表</text>
+      <text x="70" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">insert sorted</text>
+    </g>
+
+    <!-- Arrow 5 -> 6 -->
+    <g stroke="#6B7280" stroke-width="1" fill="none">
+      <line x1="852" y1="145" x2="874" y2="145"/>
+      <polyline points="870,141 874,145 870,149"/>
+    </g>
+
+    <!-- Node 6: 返回 addr -->
+    <g transform="translate(876 120)">
+      <rect x="0" y="0" width="140" height="50" rx="6" fill="#1A1F26" stroke="#4A9EFF" stroke-width="1"/>
+      <text x="70" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#4A9EFF">返回 addr</text>
+      <text x="70" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">return start_addr</text>
+    </g>
+  </g>
+
+  <!-- ============================================================= -->
+  <!-- Three algorithm branches (below diamond, y=240)              -->
+  <!-- Diamond bottom at (454, 177). Branch to 3 cards.              -->
+  <!-- Cards: w=200 h=70, y=240. Centers: 330 / 530 / 730            -->
+  <!-- ============================================================= -->
+  <g id="algorithm-branches" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif'>
+
+    <!-- Dashed connector from diamond bottom down to branch bus -->
+    <g stroke="#C9A961" stroke-width="1" stroke-dasharray="3 3" fill="none" stroke-opacity="0.7">
+      <line x1="454" y1="177" x2="454" y2="205"/>
+      <line x1="330" y1="205" x2="730" y2="205"/>
+      <line x1="330" y1="205" x2="330" y2="232"/>
+      <line x1="530" y1="205" x2="530" y2="232"/>
+      <line x1="730" y1="205" x2="730" y2="232"/>
+    </g>
+
+    <!-- Branch label -->
+    <text x="464" y="200" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#C9A961" fill-opacity="0.8">strategy swap</text>
+
+    <!-- Card 1: FIRST FIT -->
+    <g transform="translate(230 232)">
+      <rect x="0" y="0" width="200" height="76" rx="6" fill="#1A1F26" stroke="#C9A961" stroke-width="1"/>
+      <rect x="0" y="0" width="200" height="20" rx="6" fill="#C9A961" fill-opacity="0.15"/>
+      <rect x="0" y="14" width="200" height="6" fill="#C9A961" fill-opacity="0.15"/>
+      <text x="12" y="14" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="600" fill="#C9A961" letter-spacing="1">FIRST FIT</text>
+      <text x="12" y="40" font-size="12" fill="#E8E4D9">首个 size >= request</text>
+      <text x="12" y="58" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">顺序扫描, 找到即停</text>
+      <text x="12" y="70" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#6B7280" fill-opacity="0.7">O(n) 早停</text>
+    </g>
+
+    <!-- Card 2: BEST FIT -->
+    <g transform="translate(430 232)">
+      <rect x="0" y="0" width="200" height="76" rx="6" fill="#1A1F26" stroke="#C9A961" stroke-width="1"/>
+      <rect x="0" y="0" width="200" height="20" rx="6" fill="#C9A961" fill-opacity="0.15"/>
+      <rect x="0" y="14" width="200" height="6" fill="#C9A961" fill-opacity="0.15"/>
+      <text x="12" y="14" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="600" fill="#C9A961" letter-spacing="1">BEST FIT</text>
+      <text x="12" y="40" font-size="12" fill="#E8E4D9">min(size) 满足要求</text>
+      <text x="12" y="58" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">扫描全部, 取最小</text>
+      <text x="12" y="70" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#6B7280" fill-opacity="0.7">O(n) 全扫</text>
+    </g>
+
+    <!-- Card 3: WORST FIT -->
+    <g transform="translate(630 232)">
+      <rect x="0" y="0" width="200" height="76" rx="6" fill="#1A1F26" stroke="#C9A961" stroke-width="1"/>
+      <rect x="0" y="0" width="200" height="20" rx="6" fill="#C9A961" fill-opacity="0.15"/>
+      <rect x="0" y="14" width="200" height="6" fill="#C9A961" fill-opacity="0.15"/>
+      <text x="12" y="14" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="600" fill="#C9A961" letter-spacing="1">WORST FIT</text>
+      <text x="12" y="40" font-size="12" fill="#E8E4D9">max(size) 最大块</text>
+      <text x="12" y="58" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">扫描全部, 取最大</text>
+      <text x="12" y="70" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#6B7280" fill-opacity="0.7">O(n) 全扫</text>
+    </g>
+  </g>
+
+  <!-- ============================================================= -->
+  <!-- Footer note                                                   -->
+  <!-- ============================================================= -->
+  <g transform="translate(64 340)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#6B7280">
+    <text x="0" y="0">同一数据结构与遍历骨架, 仅替换选块判定函数 → 三算法同构对比</text>
+  </g>
+</svg>

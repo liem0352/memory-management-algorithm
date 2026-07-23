@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="320" viewBox="0 0 1200 320" role="img" aria-labelledby="cmpTitle cmpDesc">
+  <title id="cmpTitle">三算法选块策略对比</title>
+  <desc id="cmpDesc">同一请求 100KB 下,首次适应选第一个够大块(150K),最佳适应选最小够大块(110K),最坏适应选最大块(220K)。切分后剩余碎片大小与位置不同,直观体现碎片分布差异。</desc>
+
+  <!-- Background -->
+  <rect width="1200" height="320" rx="20" fill="#0E1116"/>
+
+  <!-- ============================================================= -->
+  <!-- Header: title + request annotation                             -->
+  <!-- ============================================================= -->
+  <g id="header" transform="translate(64 44)" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif'>
+    <text x="0" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="3" fill="#6B7280">COMPARISON</text>
+    <text x="0" y="32" font-size="26" font-weight="700" fill="#E8E4D9" letter-spacing="-0.3">同请求 100 KB · 三算法选块对比</text>
+  </g>
+
+  <!-- Request badge (top-right) -->
+  <g transform="translate(960 36)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <rect x="0" y="0" width="176" height="34" rx="4" fill="none" stroke="#C9A961" stroke-width="1"/>
+    <text x="14" y="22" font-size="12" fill="#6B7280">REQUEST</text>
+    <text x="92" y="22" font-size="14" font-weight="600" fill="#C9A961">100 KB</text>
+  </g>
+
+  <!-- ============================================================= -->
+  <!-- Initial free blocks (same for all three rows):                -->
+  <!-- Free1=150K, Free2=110K, Free3=220K  (total 480K)              -->
+  <!-- Strip: x=220..960 (width 740)                                 -->
+  <!-- Free1: x=220, w=231   (150/480*740)                           -->
+  <!-- Free2: x=451, w=170   (110/480*740)                           -->
+  <!-- Free3: x=621, w=339   (220/480*740) -> 339                    -->
+  <!-- Split line positions:                                         -->
+  <!--   First Fit  -> Free1, split at 100/150: x=220+154=374        -->
+  <!--   Best Fit   -> Free2, split at 100/110: x=451+155=606        -->
+  <!--   Worst Fit  -> Free3, split at 100/220: x=621+154=775        -->
+  <!-- ============================================================= -->
+
+  <!-- ===== Row 1: FIRST FIT (selects Free1, first sufficient) ===== -->
+  <g id="row-first" transform="translate(0 100)">
+    <!-- Algorithm label -->
+    <text x="64" y="14" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="600" fill="#C9A961" letter-spacing="1">FIRST FIT</text>
+    <text x="64" y="32" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif' font-size="13" fill="#9CA3AF">首个够大块</text>
+    <text x="64" y="50" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">select Free1</text>
+
+    <!-- Memory strip background -->
+    <rect x="220" y="0" width="740" height="44" rx="4" fill="#1A1F26" stroke="#6B7280" stroke-width="1" stroke-opacity="0.3"/>
+
+    <!-- Free1: SELECTED (150K), split into 100K allocated + 50K free remainder -->
+    <rect x="220" y="0" width="154" height="44" rx="0" fill="#C9A961" fill-opacity="0.85"/>
+    <rect x="374" y="0" width="77" height="44" rx="0" fill="none" stroke="#4A9EFF" stroke-width="1" stroke-dasharray="3 3"/>
+    <!-- Free2: not selected (110K) -->
+    <rect x="451" y="0" width="170" height="44" rx="0" fill="none" stroke="#4A9EFF" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.45"/>
+    <!-- Free3: not selected (220K) -->
+    <rect x="621" y="0" width="339" height="44" rx="0" fill="none" stroke="#4A9EFF" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.45"/>
+
+    <!-- Block size labels (above strip) -->
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">
+      <text x="297" y="-6" text-anchor="middle">150K</text>
+      <text x="536" y="-6" text-anchor="middle">110K</text>
+      <text x="790" y="-6" text-anchor="middle">220K</text>
+    </g>
+
+    <!-- Split line marker -->
+    <line x1="374" y1="-2" x2="374" y2="46" stroke="#E8E4D9" stroke-width="1" stroke-opacity="0.5"/>
+
+    <!-- Result annotation (right) -->
+    <text x="980" y="20" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#6B7280">REMAINDER</text>
+    <text x="980" y="38" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="600" fill="#E8E4D9">50 K 碎片 @ 低地址</text>
+  </g>
+
+  <!-- ===== Row 2: BEST FIT (selects Free2, smallest sufficient) ===== -->
+  <g id="row-best" transform="translate(0 170)">
+    <text x="64" y="14" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="600" fill="#C9A961" letter-spacing="1">BEST FIT</text>
+    <text x="64" y="32" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif' font-size="13" fill="#9CA3AF">最小够大块</text>
+    <text x="64" y="50" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">select Free2</text>
+
+    <rect x="220" y="0" width="740" height="44" rx="4" fill="#1A1F26" stroke="#6B7280" stroke-width="1" stroke-opacity="0.3"/>
+
+    <!-- Free1: not selected -->
+    <rect x="220" y="0" width="231" height="44" rx="0" fill="none" stroke="#4A9EFF" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.45"/>
+    <!-- Free2: SELECTED (110K), split into 100K allocated + 10K free -->
+    <rect x="451" y="0" width="155" height="44" rx="0" fill="#C9A961" fill-opacity="0.85"/>
+    <rect x="606" y="0" width="15" height="44" rx="0" fill="none" stroke="#4A9EFF" stroke-width="1" stroke-dasharray="2 2"/>
+    <!-- Free3: not selected -->
+    <rect x="621" y="0" width="339" height="44" rx="0" fill="none" stroke="#4A9EFF" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.45"/>
+
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">
+      <text x="335" y="-6" text-anchor="middle">150K</text>
+      <text x="536" y="-6" text-anchor="middle">110K</text>
+      <text x="790" y="-6" text-anchor="middle">220K</text>
+    </g>
+
+    <line x1="606" y1="-2" x2="606" y2="46" stroke="#E8E4D9" stroke-width="1" stroke-opacity="0.5"/>
+
+    <text x="980" y="20" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#6B7280">REMAINDER</text>
+    <text x="980" y="38" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="600" fill="#E8E4D9">10 K 碎片 · 易不可用</text>
+  </g>
+
+  <!-- ===== Row 3: WORST FIT (selects Free3, largest) ===== -->
+  <g id="row-worst" transform="translate(0 240)">
+    <text x="64" y="14" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="600" fill="#C9A961" letter-spacing="1">WORST FIT</text>
+    <text x="64" y="32" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif' font-size="13" fill="#9CA3AF">最大块</text>
+    <text x="64" y="50" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">select Free3</text>
+
+    <rect x="220" y="0" width="740" height="44" rx="4" fill="#1A1F26" stroke="#6B7280" stroke-width="1" stroke-opacity="0.3"/>
+
+    <!-- Free1: not selected -->
+    <rect x="220" y="0" width="231" height="44" rx="0" fill="none" stroke="#4A9EFF" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.45"/>
+    <!-- Free2: not selected -->
+    <rect x="451" y="0" width="170" height="44" rx="0" fill="none" stroke="#4A9EFF" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.45"/>
+    <!-- Free3: SELECTED (220K), split into 100K allocated + 120K free -->
+    <rect x="621" y="0" width="154" height="44" rx="0" fill="#C9A961" fill-opacity="0.85"/>
+    <rect x="775" y="0" width="185" height="44" rx="0" fill="none" stroke="#4A9EFF" stroke-width="1" stroke-dasharray="3 3"/>
+
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">
+      <text x="335" y="-6" text-anchor="middle">150K</text>
+      <text x="536" y="-6" text-anchor="middle">110K</text>
+      <text x="790" y="-6" text-anchor="middle">220K</text>
+    </g>
+
+    <line x1="775" y1="-2" x2="775" y2="46" stroke="#E8E4D9" stroke-width="1" stroke-opacity="0.5"/>
+
+    <text x="980" y="20" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#6B7280">REMAINDER</text>
+    <text x="980" y="38" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="600" fill="#E8E4D9">120 K 碎片 @ 高地址</text>
+  </g>
+
+  <!-- Footer note: legend for the strip palette -->
+  <g transform="translate(64 300)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">
+    <rect x="0" y="-9" width="10" height="10" rx="1" fill="#C9A961" fill-opacity="0.85"/>
+    <text x="16" y="0">allocated 100K</text>
+    <rect x="130" y="-9" width="10" height="10" rx="1" fill="none" stroke="#4A9EFF" stroke-width="1" stroke-dasharray="2 2"/>
+    <text x="146" y="0">free remainder</text>
+    <text x="260" y="0" fill-opacity="0.6">初始三个空闲块:150K / 110K / 220K</text>
+  </g>
+</svg>

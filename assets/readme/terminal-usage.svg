@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="200" viewBox="0 0 1200 200" role="img" aria-labelledby="tuTitle tuDesc">
+  <title id="tuTitle">如何使用 · 编译运行与交互菜单</title>
+  <desc id="tuDesc">左侧为终端命令卡片:gcc 编译生成 memory_management_utf8.exe 后运行;右侧为交互菜单流程:选择算法 → 分配内存 → 回收内存 → 显示当前分区状态。</desc>
+
+  <!-- Background -->
+  <rect width="1200" height="200" rx="20" fill="#0E1116"/>
+
+  <!-- ============================================================= -->
+  <!-- Header                                                        -->
+  <!-- ============================================================= -->
+  <g id="header" transform="translate(64 36)" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif'>
+    <text x="0" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="3" fill="#6B7280">USAGE</text>
+    <text x="0" y="32" font-size="26" font-weight="700" fill="#E8E4D9" letter-spacing="-0.3">如何使用 · 编译运行与交互菜单</text>
+  </g>
+
+  <!-- ============================================================= -->
+  <!-- LEFT: Terminal card (x=64..620)                               -->
+  <!-- ============================================================= -->
+  <g id="terminal" transform="translate(64 92)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <!-- Terminal window frame -->
+    <rect x="0" y="0" width="556" height="92" rx="6" fill="#1A1F26" stroke="#6B7280" stroke-width="1" stroke-opacity="0.5"/>
+
+    <!-- Title bar -->
+    <rect x="0" y="0" width="556" height="22" rx="6" fill="#0E1116"/>
+    <rect x="0" y="16" width="556" height="6" fill="#0E1116"/>
+    <!-- Three window dots -->
+    <circle cx="14" cy="11" r="3.5" fill="#6B7280" fill-opacity="0.5"/>
+    <circle cx="26" cy="11" r="3.5" fill="#6B7280" fill-opacity="0.5"/>
+    <circle cx="38" cy="11" r="3.5" fill="#6B7280" fill-opacity="0.5"/>
+    <text x="278" y="15" text-anchor="middle" font-size="10" fill="#6B7280">powershell - memory_management</text>
+
+    <!-- Command lines -->
+    <text x="14" y="44" font-size="12" fill="#6B7280">PS C:\memory&gt;</text>
+    <text x="110" y="44" font-size="12" fill="#E8E4D9">gcc -Wall -g -std=c99 -o memory_management_utf8.exe memory_management_utf8.c</text>
+
+    <text x="14" y="66" font-size="12" fill="#6B7280">PS C:\memory&gt;</text>
+    <text x="110" y="66" font-size="12" fill="#C9A961">.\memory_management_utf8.exe</text>
+
+    <text x="14" y="84" font-size="11" fill="#4A9EFF" fill-opacity="0.8">-- console CP 65001 (UTF-8) ready --</text>
+  </g>
+
+  <!-- ============================================================= -->
+  <!-- RIGHT: Interactive menu flow (x=660..1136)                    -->
+  <!-- 4 steps with arrows between                                   -->
+  <!-- ============================================================= -->
+  <g id="menu-flow" transform="translate(660 92)" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif'>
+
+    <!-- Caption -->
+    <text x="0" y="-8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="2" fill="#6B7280">INTERACTIVE MENU</text>
+
+    <!-- Step 1: 选择算法 -->
+    <g transform="translate(0 8)">
+      <rect x="0" y="0" width="108" height="76" rx="6" fill="#1A1F26" stroke="#C9A961" stroke-width="1"/>
+      <rect x="0" y="0" width="108" height="18" rx="6" fill="#C9A961" fill-opacity="0.15"/>
+      <rect x="0" y="12" width="108" height="6" fill="#C9A961" fill-opacity="0.15"/>
+      <text x="54" y="13" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" font-weight="600" fill="#C9A961">STEP 1</text>
+      <text x="54" y="40" text-anchor="middle" font-size="12" fill="#E8E4D9">选择算法</text>
+      <text x="54" y="58" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#6B7280">FF / BF / WF</text>
+      <text x="54" y="70" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8" fill="#6B7280" fill-opacity="0.7">init 1024 KB</text>
+    </g>
+
+    <!-- Arrow 1 -> 2 -->
+    <g stroke="#6B7280" stroke-width="1" fill="none">
+      <line x1="108" y1="46" x2="124" y2="46"/>
+      <polyline points="120,42 124,46 120,50"/>
+    </g>
+
+    <!-- Step 2: 分配内存 -->
+    <g transform="translate(126 8)">
+      <rect x="0" y="0" width="108" height="76" rx="6" fill="#1A1F26" stroke="#6B7280" stroke-width="1"/>
+      <rect x="0" y="0" width="108" height="18" rx="6" fill="#6B7280" fill-opacity="0.18"/>
+      <rect x="0" y="12" width="108" height="6" fill="#6B7280" fill-opacity="0.18"/>
+      <text x="54" y="13" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" font-weight="600" fill="#9CA3AF">STEP 2</text>
+      <text x="54" y="40" text-anchor="middle" font-size="12" fill="#E8E4D9">分配内存</text>
+      <text x="54" y="58" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#6B7280">allocate(n)</text>
+      <text x="54" y="70" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8" fill="#6B7280" fill-opacity="0.7">split block</text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <g stroke="#6B7280" stroke-width="1" fill="none">
+      <line x1="234" y1="46" x2="250" y2="46"/>
+      <polyline points="246,42 250,46 246,50"/>
+    </g>
+
+    <!-- Step 3: 回收内存 -->
+    <g transform="translate(252 8)">
+      <rect x="0" y="0" width="108" height="76" rx="6" fill="#1A1F26" stroke="#6B7280" stroke-width="1"/>
+      <rect x="0" y="0" width="108" height="18" rx="6" fill="#6B7280" fill-opacity="0.18"/>
+      <rect x="0" y="12" width="108" height="6" fill="#6B7280" fill-opacity="0.18"/>
+      <text x="54" y="13" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" font-weight="600" fill="#9CA3AF">STEP 3</text>
+      <text x="54" y="40" text-anchor="middle" font-size="12" fill="#E8E4D9">回收内存</text>
+      <text x="54" y="58" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#6B7280">free(job)</text>
+      <text x="54" y="70" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8" fill="#6B7280" fill-opacity="0.7">merge adjacent</text>
+    </g>
+
+    <!-- Arrow 3 -> 4 -->
+    <g stroke="#6B7280" stroke-width="1" fill="none">
+      <line x1="360" y1="46" x2="376" y2="46"/>
+      <polyline points="372,42 376,46 372,50"/>
+    </g>
+
+    <!-- Step 4: 显示状态 -->
+    <g transform="translate(378 8)">
+      <rect x="0" y="0" width="108" height="76" rx="6" fill="#1A1F26" stroke="#4A9EFF" stroke-width="1"/>
+      <rect x="0" y="0" width="108" height="18" rx="6" fill="#4A9EFF" fill-opacity="0.12"/>
+      <rect x="0" y="12" width="108" height="6" fill="#4A9EFF" fill-opacity="0.12"/>
+      <text x="54" y="13" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" font-weight="600" fill="#4A9EFF">STEP 4</text>
+      <text x="54" y="40" text-anchor="middle" font-size="12" fill="#E8E4D9">显示状态</text>
+      <text x="54" y="58" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#6B7280">print map</text>
+      <text x="54" y="70" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8" fill="#6B7280" fill-opacity="0.7">partition strip</text>
+    </g>
+  </g>
+
+  <!-- Footer hint -->
+  <g transform="translate(64 192)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">
+    <text x="0" y="0">每次操作后打印当前分区条带 · 可直观看到分割与合并</text>
+  </g>
+</svg>

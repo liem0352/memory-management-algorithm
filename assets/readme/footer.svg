@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 100" role="img" aria-labelledby="ftTitle ftDesc">
+  <title id="ftTitle">README 签名与许可</title>
+  <desc id="ftDesc">README 制作签名(beautify-github-readme)、教学项目许可、memory-management-algorithm 项目信息。</desc>
+
+  <!-- Background -->
+  <rect width="1200" height="100" rx="20" fill="#0E1116"/>
+
+  <!-- Top hairline -->
+  <line x1="64" y1="20" x2="1136" y2="20" stroke="#6B7280" stroke-width="1" stroke-opacity="0.25"/>
+
+  <!-- ============================================================= -->
+  <!-- LEFT: README MADE WITH signature                              -->
+  <!-- ============================================================= -->
+  <g id="signature" transform="translate(64 40)" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif'>
+    <rect x="0" y="0" width="32" height="2" fill="#C9A961"/>
+    <text x="0" y="22" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="2" fill="#6B7280">README MADE WITH</text>
+    <text x="0" y="46" font-size="16" font-weight="600" fill="#E8E4D9" letter-spacing="-0.2">beautify-github-readme</text>
+    <text x="0" y="62" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">industrial-measure visual system</text>
+  </g>
+
+  <!-- Vertical divider 1 -->
+  <line x1="500" y1="32" x2="500" y2="78" stroke="#6B7280" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- ============================================================= -->
+  <!-- MIDDLE: License                                               -->
+  <!-- ============================================================= -->
+  <g id="license" transform="translate(532 40)" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif'>
+    <text x="0" y="22" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="2" fill="#6B7280">LICENSE</text>
+    <text x="0" y="46" font-size="16" font-weight="600" fill="#E8E4D9">教学项目</text>
+    <text x="0" y="62" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">供学习与课堂使用</text>
+  </g>
+
+  <!-- Vertical divider 2 -->
+  <line x1="820" y1="32" x2="820" y2="78" stroke="#6B7280" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- ============================================================= -->
+  <!-- RIGHT: Project info                                           -->
+  <!-- ============================================================= -->
+  <g id="project" transform="translate(852 40)" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif'>
+    <text x="0" y="22" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="2" fill="#6B7280">PROJECT</text>
+    <text x="0" y="46" font-size="16" font-weight="600" fill="#E8E4D9">memory-management-algorithm</text>
+    <text x="0" y="62" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">v2.0 UTF-8 · C / gcc -std=c99</text>
+  </g>
+</svg>

@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="280" viewBox="0 0 1200 280" role="img" aria-labelledby="frTitle frDesc">
+  <title id="frTitle">回收流程图</title>
+  <desc id="frDesc">内存回收流程:释放作业 → 标记为空闲 → 向上检查相邻空闲区 → 向下检查相邻空闲区 → 双向合并为一个更大的空闲块。三种算法共用同一回收逻辑。</desc>
+
+  <!-- Background -->
+  <rect width="1200" height="280" rx="20" fill="#0E1116"/>
+
+  <!-- ============================================================= -->
+  <!-- Header                                                        -->
+  <!-- ============================================================= -->
+  <g id="header" transform="translate(64 40)" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif'>
+    <text x="0" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="3" fill="#6B7280">RECYCLE FLOW</text>
+    <text x="0" y="32" font-size="26" font-weight="700" fill="#E8E4D9" letter-spacing="-0.3">回收流程 · 双向合并</text>
+  </g>
+
+  <!-- ============================================================= -->
+  <!-- Main flow (horizontal, y=100)                                 -->
+  <!-- 5 nodes: w=180 h=50, gap=30. Start x=80                       -->
+  <!-- 1.80-260 | 2.290-470 | 3.500-680 | 4.710-890 | 5.920-1100     -->
+  <!-- ============================================================= -->
+  <g id="main-flow" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif'>
+
+    <!-- Node 1: 释放 job_id -->
+    <g transform="translate(80 100)">
+      <rect x="0" y="0" width="180" height="50" rx="6" fill="#1A1F26" stroke="#C9A961" stroke-width="1"/>
+      <text x="90" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#E8E4D9">释放 job_id</text>
+      <text x="90" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">free(job)</text>
+    </g>
+
+    <!-- Arrow 1 -> 2 -->
+    <g stroke="#6B7280" stroke-width="1" fill="none">
+      <line x1="260" y1="125" x2="288" y2="125"/>
+      <polyline points="284,121 288,125 284,129"/>
+    </g>
+
+    <!-- Node 2: 标记空闲 -->
+    <g transform="translate(290 100)">
+      <rect x="0" y="0" width="180" height="50" rx="6" fill="#1A1F26" stroke="#6B7280" stroke-width="1"/>
+      <text x="90" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#E8E4D9">标记为空闲</text>
+      <text x="90" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">status = 0</text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <g stroke="#6B7280" stroke-width="1" fill="none">
+      <line x1="470" y1="125" x2="498" y2="125"/>
+      <polyline points="494,121 498,125 494,129"/>
+    </g>
+
+    <!-- Node 3: 向上检查 -->
+    <g transform="translate(500 100)">
+      <rect x="0" y="0" width="180" height="50" rx="6" fill="#1A1F26" stroke="#6B7280" stroke-width="1"/>
+      <text x="90" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#E8E4D9">向上检查相邻</text>
+      <text x="90" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">check prev node</text>
+    </g>
+
+    <!-- Arrow 3 -> 4 -->
+    <g stroke="#6B7280" stroke-width="1" fill="none">
+      <line x1="680" y1="125" x2="708" y2="125"/>
+      <polyline points="704,121 708,125 704,129"/>
+    </g>
+
+    <!-- Node 4: 向下检查 -->
+    <g transform="translate(710 100)">
+      <rect x="0" y="0" width="180" height="50" rx="6" fill="#1A1F26" stroke="#6B7280" stroke-width="1"/>
+      <text x="90" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#E8E4D9">向下检查相邻</text>
+      <text x="90" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">check next node</text>
+    </g>
+
+    <!-- Arrow 4 -> 5 -->
+    <g stroke="#6B7280" stroke-width="1" fill="none">
+      <line x1="890" y1="125" x2="918" y2="125"/>
+      <polyline points="914,121 918,125 914,129"/>
+    </g>
+
+    <!-- Node 5: 双向合并 -->
+    <g transform="translate(920 100)">
+      <rect x="0" y="0" width="180" height="50" rx="6" fill="#1A1F26" stroke="#4A9EFF" stroke-width="1"/>
+      <text x="90" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#4A9EFF">双向合并</text>
+      <text x="90" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">merge &amp; update list</text>
+    </g>
+  </g>
+
+  <!-- ============================================================= -->
+  <!-- Merge visualization (y=190)                                   -->
+  <!-- LEFT: 3 separate blocks (FREE prev | released | FREE next)    -->
+  <!-- ARROW ->                                                       -->
+  <!-- RIGHT: 1 merged block (FREE merged)                           -->
+  <!-- ============================================================= -->
+  <g id="merge-viz" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+
+    <!-- Caption -->
+    <text x="80" y="186" font-size="10" letter-spacing="2" fill="#6B7280">MERGE EXAMPLE · 相邻空闲区合并</text>
+
+    <!-- LEFT: three separate blocks -->
+    <g transform="translate(80 196)">
+      <!-- FREE prev (allocated-before, now free) -->
+      <rect x="0" y="0" width="90" height="44" rx="3" fill="none" stroke="#4A9EFF" stroke-width="1" stroke-dasharray="3 3"/>
+      <text x="45" y="20" text-anchor="middle" font-size="10" fill="#4A9EFF">FREE</text>
+      <text x="45" y="34" text-anchor="middle" font-size="9" fill="#4A9EFF" fill-opacity="0.7">120K</text>
+
+      <!-- Released block (just freed) -->
+      <rect x="96" y="0" width="90" height="44" rx="3" fill="#C9A961" fill-opacity="0.5" stroke="#C9A961" stroke-width="1" stroke-dasharray="2 2"/>
+      <text x="141" y="20" text-anchor="middle" font-size="10" fill="#C9A961">RELEASED</text>
+      <text x="141" y="34" text-anchor="middle" font-size="9" fill="#C9A961" fill-opacity="0.8">100K</text>
+
+      <!-- FREE next -->
+      <rect x="192" y="0" width="90" height="44" rx="3" fill="none" stroke="#4A9EFF" stroke-width="1" stroke-dasharray="3 3"/>
+      <text x="237" y="20" text-anchor="middle" font-size="10" fill="#4A9EFF">FREE</text>
+      <text x="237" y="34" text-anchor="middle" font-size="9" fill="#4A9EFF" fill-opacity="0.7">160K</text>
+
+      <!-- boundary labels -->
+      <text x="93" y="-4" text-anchor="middle" font-size="8" fill="#6B7280" fill-opacity="0.6">adjacent</text>
+      <text x="189" y="-4" text-anchor="middle" font-size="8" fill="#6B7280" fill-opacity="0.6">adjacent</text>
+    </g>
+
+    <!-- Arrow between -->
+    <g transform="translate(380 218)" stroke="#C9A961" stroke-width="1.5" fill="none">
+      <line x1="0" y1="0" x2="60" y2="0"/>
+      <polyline points="56,-4 60,0 56,4"/>
+    </g>
+    <text x="410" y="210" text-anchor="middle" font-size="10" fill="#C9A961">merge</text>
+
+    <!-- RIGHT: merged block -->
+    <g transform="translate(460 196)">
+      <rect x="0" y="0" width="280" height="44" rx="3" fill="none" stroke="#4A9EFF" stroke-width="1.5"/>
+      <text x="140" y="20" text-anchor="middle" font-size="11" font-weight="600" fill="#4A9EFF">FREE · MERGED</text>
+      <text x="140" y="36" text-anchor="middle" font-size="10" fill="#4A9EFF" fill-opacity="0.8">380K (120 + 100 + 160)</text>
+    </g>
+
+    <!-- Right-side note -->
+    <g transform="translate(780 196)" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif'>
+      <text x="0" y="14" font-size="11" fill="#9CA3AF">合并后仅 1 个节点, 起始地址保留</text>
+      <text x="0" y="30" font-size="11" fill="#9CA3AF">为原最低地址, size 为三者之和</text>
+      <text x="0" y="46" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#6B7280">list node count -2</text>
+    </g>
+  </g>
+
+  <!-- ============================================================= -->
+  <!-- Footer note                                                   -->
+  <!-- ============================================================= -->
+  <g transform="translate(64 268)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#6B7280">
+    <text x="0" y="0">回收逻辑独立于选块算法 · 三种算法共用同一套合并实现</text>
+  </g>
+</svg>
